@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Calculator App</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <style>
+            a { color: #6c757d; }
+            a:hover { color: #ff7b7b; }
+            .form-control::-webkit-input-placeholder { color: #ffffff; }
+            .list-group-item { background-color: #212529; color: #6c757d; border-color: #6c757d; }
+            .btn { width: 50px; }
+        </style>   
+    </head>
+
+    <body class="bg-dark text-white">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        
+        <nav class="navbar navbar-expand navbar-dark">
+            <div class="container col-12 d-flex justify-content-center align-items-center">
+                <a class="navbar-brand" href="">Calculator App</a>
+            </div>
+        </nav>
+        <div class="container-fluid pt-3">
+            <form method="POST" action="{% url 'home' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row my-1 justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="sin(45.0)">sin</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="cos(45.0)">cos</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="tan(45.0)">tan</button>
+                            <button type="reset" class="btn btn-outline-secondary mx-1" value="DEL">DEL</button>
+                        </div>
+
+                        <div class="row my-1 justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="log(1.0,1.0)">log</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="3.141592653589">&#960</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="2.718281828459">e</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" style="display: flex; justify-content: center; align-items: center;" value="1mod1">mod</button>
+                        </div>
+
+                        <div class="row my-1 justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="(1/1)">1/x</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="1^2">x<sup>2</sup></button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="sqrt(1.0,2.0)">√x</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="/">/</button>
+                        </div>
+                        <div class="row my-1 justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="7">7</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="8">8</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="9">9</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="*">*</button>
+                        </div>
+                        <div class="row my-1 justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="4">4</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="5">5</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="6">6</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="-">-</button>
+                        </div>
+                        <div class="row my-1 justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="1">1</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="2">2</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="3">3</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value="+">+</button>
+                        </div>
+                        <div class="row my-1 justify-content-center">
+                            <button type="button"class="btn btn-outline-secondary mx-1 insert-value" value="0">0</button>
+                            <button type="button" class="btn btn-outline-secondary mx-1 insert-value" value=".">.</button>
+                            <button type="submit" class="btn btn-outline-success mx-1" style="width: 110px;">=</button>
+                        </div>
+                        <div class="row my-1 justify-content-center pt-3">
+                            <ul class="list-group w-100">
+                                <li class="list-group-item">Sine e.g. "sin(45.0)" or "math.sin(math.radians(45.0))" (sine of angle 45)</li>
+                                <li class="list-group-item">Cosine e.g. "cos(45.0)" or "math.cos(math.radians(45.0))" (cosine of angle 45)</li>
+                                <li class="list-group-item">Tangent e.g. "tan(45.0)" or "math.tan(math.radians(45.0))" (tangent of angle 45)</li>
+                                <li class="list-group-item">Exponentiation e.g. "2^3" or "2**3" (2 to the power of 3)</li>   
+                                <li class="list-group-item">Square root e.g. "sqrt(9.0,2.0)" or "math.pow(9.0,1/2.0)" (square root of 9)</li> 
+                                <li class="list-group-item">The rest from division e.g. "5mod2" or "5%2" (the remainder of dividing 5 by 2)</li>  
+                                <li class="list-group-item">Natural logarithm e.g. "log(10.0)" or "math.log(10.0)" (natural logarithm of 10 in the given base e)</li>   
+                                <li class="list-group-item">Logarithm e.g. "log(15.0,4.0)" or "math.log(15.0,4.0)" (logarithm of 15 in the given base 4)</li>              
+                            </ul>
+                            <ul>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <textarea name="inputField" id="inputField" type="text" class="form-control bg-dark text-white" placeholder="Enter the operation"></textarea>
+                        <button type="submit" class="btn btn-outline-success my-3 w-100">Calculate</button>
+                        {% if output is not None %}
+                        <div class="my-3 text-break">
+                            Output: 
+                            {% if output != 'Incorrect operation' %}
+                            {{input}} = 
+                            <span class="text-success">{{output}}</span>
+                            {% else %}
+                            <span class="text-danger">{{output}}</span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-4">
+                        <div class="row my-1 justify-content-center">
+                            <h4 class="text-secondary">History of calculations</h4>
+                            {% for item in history %}
+                            <a class="text-decoration-none text-break" href="{% url 'remove' item.pk %}">{{item.result}} ({{item.creation_date_time}})</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <script>
+                $(document).ready(function () {
+                    $(".insert-value").click(function () {
+                        var buttonValue = $(this).val();
+                        var currentInput = $("#inputField").val();
+                        currentInput += buttonValue;
+                        $("#inputField").val(currentInput);
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>
