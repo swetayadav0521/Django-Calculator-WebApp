@@ -2,7 +2,7 @@
 
 ### Project configuration
 ```bash
-git clone https://github.com/Luko575/django-calculator-app.git
+git clone https://github.com/swetayadav0521/Django-Calculator-WebApp.git
 cd django-calculator-app
 
 # -------------------------------------
